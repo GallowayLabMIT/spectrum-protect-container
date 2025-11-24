@@ -17,6 +17,8 @@ cd /workdir \
 && dpkg -i tivsm-bahdw.amd64.deb
 EOF
 
+ENV LD_LIBRARY_PATH=/usr/local/ibm/gsk8_64/lib64
+
 RUN mkdir /data \
  && ln -sf /dev/stdout /opt/tivoli/tsm/dsmsched.log \
  && ln -sf /dev/stderr /opt/tivoli/tsm/error.log
