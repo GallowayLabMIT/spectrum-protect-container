@@ -29,5 +29,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/GallowayLabMIT/spectrum-protect:latest
+          tags: ghcr.io/gallowaylabmit/spectrum-protect:latest
           platforms: linux/amd64
