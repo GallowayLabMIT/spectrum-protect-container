@@ -17,6 +17,13 @@ cd /workdir \
 && dpkg -i tivsm-bahdw.amd64.deb
 EOF
 
+RUN <<EOF
+apt-get update \
+&& apt-get install -y ca-certificates \
+&& update-ca-certificates \
+&& rm -rf /var/lib/apt/lists/*
+EOF
+
 ENV LD_LIBRARY_PATH=/usr/local/ibm/gsk8_64/lib64
 
 RUN mkdir /data \
