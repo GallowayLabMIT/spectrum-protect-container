@@ -22,7 +22,7 @@ if [[ ! -v SERVER_CERT_SHA256_HASH ]]; then
     exit 1
 fi
 
-if ! printf "%s /tmp/server_cert.pem\n" "$SERVER_CERT_SHA256_HASH" | sha1sum --check --status; then
+if ! printf "%s /tmp/server_cert.pem\n" "$SERVER_CERT_SHA256_HASH" | sha256sum --check --status; then
     printf "Certificate hash failed! The downloaded server certificate has hash:\n"
     printf "%s\n" "$DOWNLOADED_HASH"
     printf "but this does not match the provided one:"
