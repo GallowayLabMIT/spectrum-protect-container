@@ -22,7 +22,8 @@ RUN <<EOF
 apt-get update \
 && apt-get install -y ca-certificates openssl \
 && update-ca-certificates \
-&& rm -rf /var/lib/apt/lists/*
+&& rm -rf /var/lib/apt/lists/* \
+&& chmod +x /workdir/entrypoint.sh
 EOF
 
 ENV LD_LIBRARY_PATH=/usr/local/ibm/gsk8_64/lib64
