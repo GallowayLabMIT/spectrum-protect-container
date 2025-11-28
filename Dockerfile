@@ -4,7 +4,8 @@ COPY ./spectrum_protect.8.1.13.3.tar.gz.aa \
      ./spectrum_protect.8.1.13.3.tar.gz.ab \
      ./spectrum_protect.8.1.13.3.tar.gz.ac \
      ./spectrum_protect.8.1.13.3.tar.gz.ad \
-     ./spectrum_protect.8.1.13.3.tar.gz.ae /workdir
+     ./spectrum_protect.8.1.13.3.tar.gz.ae \
+     ./entrypoint.sh /workdir
 RUN <<EOF
 cd /workdir \
 && cat spectrum_protect.8.1.13.3.tar.gz.a* > spectrum_protect.8.1.13.3.tar.gz \
@@ -19,20 +20,18 @@ EOF
 
 RUN <<EOF
 apt-get update \
-&& apt-get install -y ca-certificates \
+&& apt-get install -y ca-certificates openssl \
 && update-ca-certificates \
 && rm -rf /var/lib/apt/lists/*
 EOF
 
 ENV LD_LIBRARY_PATH=/usr/local/ibm/gsk8_64/lib64
 
-RUN mkdir /data \
- && ln -sf /dev/stdout /opt/tivoli/tsm/dsmsched.log \
- && ln -sf /dev/stderr /opt/tivoli/tsm/error.log
+RUN mkdir /data
 
 VOLUME /data
 VOLUME /etc/adsm
 
 WORKDIR /data
 
-CMD ["/usr/bin/dsmc", "incr"]
+ENTRYPOINT ["/bin/bash", "-c", "/workdir/entrypoint.sh"]
