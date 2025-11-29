@@ -39,13 +39,12 @@ fi
 printf "Certificate validated! Installing certificate for %s\n" "$SERVER"
 dsmcert -add -server "$SERVER" -file /tmp/server_cert.pem
 
-printf "Certificate shim done. Starting backup by "
 # If we aren't given arguments, run the default (dsmc scheduler)
 if [[ $# -eq 0 ]]; then
-    printf "exec'ing default (/usr/bin/dsmc schedule)\n"
+    printf "Certificate shim done. Starting backup by exec'ing default (/usr/bin/dsmc schedule)\n"
     exec /usr/bin/dsmc schedule
 else
     # otherwise call whatever program the user requested (in the COMMAND arg)
-    printf "exec'ing passed args: %s\n" "$*"
+    printf "Certificate shim done. Starting backup by exec'ing passed args: %s\n" "$*"
     exec "$@"
 fi
