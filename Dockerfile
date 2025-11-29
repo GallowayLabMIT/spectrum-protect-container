@@ -35,4 +35,4 @@ VOLUME /etc/adsm
 
 WORKDIR /data
 
-ENTRYPOINT ["/bin/bash", "-c", "/workdir/entrypoint.sh"]
+ENTRYPOINT ["/workdir/entrypoint.sh"]
