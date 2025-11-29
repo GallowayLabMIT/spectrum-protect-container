@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Print debugging information
-printf "TSM certificate shim start\nPassed %s args: %s\n" "$#" "$@"
+printf "TSM certificate shim start\nPassed %s args: %s\n" "$#" "$*"
 
 # Extract the TCP server and TCP port from the DSM config file
 # we do this by searching (grep) for the correct fields, then extracting by
@@ -46,6 +46,6 @@ if [[ $# -eq 0 ]]; then
     exec /usr/bin/dsmc schedule
 else
     # otherwise call whatever program the user requested (in the COMMAND arg)
-    printf "exec'ing passed args: %s\n" "$@"
+    printf "exec'ing passed args: %s\n" "$*"
     exec "$@"
-f
+fi
