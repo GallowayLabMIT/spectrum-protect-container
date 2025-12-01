@@ -29,7 +29,7 @@ if ! printf "%s /tmp/server_cert.pem\n" "$SERVER_CERT_SHA256_HASH" | sha256sum -
     printf "Certificate hash failed! The downloaded server certificate has hash:\n"
     printf "%s\n" "$DOWNLOADED_HASH"
     printf "but this does not match the provided one:"
-    printf "%s\n" "$CERT_SHA256_HASH"
+    printf "%s\n" "$SERVER_CERT_SHA256_HASH"
     printf "Update the container environment variable SERVER_CERT_SHA256_HASH\n"
     printf "if you know that the certificate changed!\n"
     exit 1
